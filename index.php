@@ -5,17 +5,7 @@
 <html>
 <head>
 	<title>WALL</title>
-	<style type="text/css">
-		body{
-			font-family: verdana;
-		}
-		.error{
-			color: red;
-		}
-		.success{
-			color: green;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="wall.css">
 </head>
 <body>
 	<?php
@@ -31,25 +21,31 @@
 			unset($_SESSION['success_message']);
 		}
 	?>
-	<form action='process.php' method='post'>
-		<h1>REGISTER FOR WALL.</h1>
-		<input type='hidden' name='action' value='register'>
-		First Name: <input type='text' name='first_name' placeholder='First Name'><br>
-		Last Name: <input type='text' name='last_name' placeholder='Last Name'><br>
-		E-Mail Address: <input type='email' name='email' placeholder='E-Mail Address'><br>
-		Password: <input type='password' name='password' placeholder='Password'><br>
-		Confirm Password: <input type='password' name='password_conf' placeholder='Confirm Password'><br>
-		<input type='submit' value='Register for WALL.'><br>
-	</form>
-	
-	<form action='process.php' method='post'>
-		<h1>LOGINTO WALL.</h1>
-		<input type='hidden' name='action' value='login'><br>
-		E-Mail Address: <input type='email' name='email' placeholder='E-Mail Address'><br>
-		Password: <input type='password' name='password' placeholder='Password'><br>
-		Confirm Password: <input type='password' name='password_conf' placeholder='Confirm Password'><br>
-		<input type='submit' value='Loginto WALL.'><br>
-	</form>
+	<div class='container'>
+		
+		<div class='header'>
+			<h1>WALL.</h1>
+		</div>
 
+		<form action='process.php' method='post'>
+			<h1>REGISTER FOR WALL.</h1>
+			<input type='hidden' name='action' value='register'>
+			First Name: <input type='text' name='first_name' placeholder='First Name'><br>
+			Last Name: <input type='text' name='last_name' placeholder='Last Name'><br>
+			E-Mail Address: <input type='email' name='email' placeholder='E-Mail Address'><br>
+			Password: <input type='password' name='password' placeholder='Password'><br>
+			Confirm Password: <input type='password' name='password_conf' placeholder='Confirm Password'><br>
+			<input type='submit' value='Register for WALL.'><br>
+		</form>
+
+		<form action='process.php' method='post'>
+			<h1>LOGINTO WALL.</h1>
+			<input type='hidden' name='action' value='login'><br>
+			E-Mail Address: <input type='email' name='email' placeholder='E-Mail Address'><br>
+			Password: <input type='password' name='password' placeholder='Password'><br>
+			Confirm Password: <input type='password' name='password_conf' placeholder='Confirm Password'><br>
+			<input type='submit' value='Loginto WALL.'><br>
+		</form>
+	</div>
 </body>
 </html>

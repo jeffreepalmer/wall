@@ -54,7 +54,7 @@
 			$_SESSION['user_id'] = $user[0]['id'];
 			$_SESSION['first_name'] = $user[0]['first_name'];
 			$_SESSION['logged_in'] = TRUE;
-			header('location: success.php');
+			header('location: wall.php');
 		}
 		else{
 			$_SESSION['errors'][] = "Can't find a user with those credentials!";
