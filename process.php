@@ -38,9 +38,7 @@
 			die();
 		}
 		else{
-			$query = "INSERT INTO users (first_name, last_name, password, email, created_at, updated_at) 
-					 VALUES ('{$post['first_name']}', '{$post['last_name']}', '{$post['password']}', '{$post['email']}', NOW(), NOW())";
-			run_mysql_query($query);
+			insert_new_user($post['first_name'], $post['last_name'], $post['password'], $post['email']);
 			$_SESSION['success_message'] = 'User successfully created!';
 			header('location: index.php');
 			die();
@@ -53,6 +51,7 @@
 		if(count($user) > 0){
 			$_SESSION['user_id'] = $user[0]['id'];
 			$_SESSION['first_name'] = $user[0]['first_name'];
+			$_SESSION['last_name'] = $user[0]['last_name'];
 			$_SESSION['logged_in'] = TRUE;
 			header('location: wall.php');
 		}
@@ -61,5 +60,15 @@
 			header('location: index.php');
 			die();
 		};
+	};
+
+	function insert_new_user($first_name, $last_name, $password, $email){
+		$esc_first_name = escape_this_string($first_name);
+		$esc_last_name = escape_this_string($last_name);
+		$esc_password = escape_this_string($password);
+		$esc_email = escape_this_string($email);
+		$query = "INSERT INTO users (first_name, last_name, password, email, created_at, updated_at) 
+					 VALUES ('{$esc_first_name}', '{$esc_last_name}', '{$esc_password}', '{$esc_email}', NOW(), NOW())";
+		run_mysql_query($query);
 	};
 ?>

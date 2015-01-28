@@ -28,9 +28,7 @@
 			die();
 			}
 		else{
-			$query = "INSERT INTO messages (user_id, message_text, created_at, updated_at) 
-					 VALUES ('{$_SESSION['user_id']}', '{$post['message']}', NOW(), NOW())";
-			run_mysql_query($query);
+			insert_new_message($post['message']);
 			$_SESSION['success_message'] = 'COMMUNIQUÉ ADDED TO WALL.';
 			header('location: wall.php');
 			die();
@@ -49,13 +47,24 @@
 			die();
 			}
 		else{
-			$query = "INSERT INTO comments (user_id, comment_text, message_id, created_at, updated_at) 
-					 VALUES ('{$_SESSION['user_id']}', '{$post['comment']}', '{$post['message_id']}', NOW(), NOW())";
-			run_mysql_query($query);		 
+			insert_new_comment($post['comment']);		 
 			// echo $query;		 
 			$_SESSION['success_message'] = 'COMMENTED.';
 			header('location: wall.php');
 			die();
 		};
 	};
+	function insert_new_message($message_text){
+		$esc_message_text = escape_this_string($message_text);
+		$query = "INSERT INTO messages (user_id, message_text, created_at, updated_at) 
+					 VALUES ('{$_SESSION['user_id']}', '{$esc_message_text}', NOW(), NOW())";
+		run_mysql_query($query);
+	};
+	function insert_new_comment($comment_text){
+		$esc_comment_text = escape_this_string($comment_text);
+		$query = "INSERT INTO comments (user_id, comment_text, message_id, created_at, updated_at) 
+					 VALUES ('{$_SESSION['user_id']}', '{$esc_comment_text}', '{$_POST['message_id']}', NOW(), NOW())";
+		run_mysql_query($query);
+	};
+
 ?>
